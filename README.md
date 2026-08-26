@@ -1,62 +1,121 @@
-# EventSphere
+# EventSphere – Event Planning & Resource Management System
 
-## Event Planning & Resource Management System
+![EventSphere Banner](screenshots/dashboard.png)
 
-EventSphere is a web-based Event Planning and Resource Management System.
+A full-stack web application built using **Python, Flask, SQLite, SQLAlchemy, HTML, CSS, and JavaScript** to simplify event planning, venue booking, resource allocation, participant management, vendor management, and attendance tracking.
 
-The goal of the project is to provide one centralized platform for managing:
+## Milestone Status
 
-- Events
-- Venues
-- Resources
-- Participants
-- Scheduling
-- Reports
-- Budget information
+**Current Progress:** Milestone 3 Completed
 
-## Technology Stack
+## Problem Statement
+
+Managing college events manually through spreadsheets, paper records, and messaging apps often leads to scheduling conflicts, resource shortages, and poor organization.
+
+EventSphere provides one centralized platform to manage the complete event workflow.
+
+## Tech Stack
 
 - Python
 - Flask
+- SQLite
+- Flask-SQLAlchemy
 - HTML5
 - CSS3
 - JavaScript
-- SQLite
-- SQLAlchemy
-- Flask-SQLAlchemy
 
-## Milestone 1
+## Features Completed
 
-Milestone 1 focuses on establishing the foundation of EventSphere.
+### Event Management
 
-Planned features include:
+- Create Event
+- View Events
+- Edit Events
+- Delete Events
 
-- Event management
-- Venue management
-- Resource management
-- Scheduling
-- Conflict detection
-- Participant registration
-- Budget management
-- Reporting
-- Dashboard
+### Venue Management
 
-## Current Step
+- Add Venues
+- Assign Venues
+- Capacity Validation
+- Scheduling Conflict Detection
 
-Step 1 - Project Setup
+### Resource Management
 
-The current implementation contains:
+- Add Resources
+- Allocate Resources
+- Availability Validation
+- Resource Return
 
-- Flask application
-- SQLite configuration
-- SQLAlchemy configuration
-- Basic dashboard
-- Responsive frontend
-- Project structure
+### Participant Management
 
-## Running the Project
+- Register Participants
+- Prevent Duplicate Registration
+- Attendance Tracking
 
-Activate the virtual environment:
+### Budget Management
 
-```powershell
-.venv\Scripts\Activate.ps1
+- Store Budget
+- Expense Tracking
+- Remaining Budget Calculation
+
+### Reports
+
+- Dashboard Summary
+- Event Reports
+- Venue Usage
+- Resource Usage
+
+## Project Structure
+
+EventSphere/
+├── app/
+├── instance/
+├── run.py
+├── requirements.txt
+└── README.md
+
+## Installation
+
+```bash
+git clone https://github.com/mfahad27/EventSphere.git
+cd EventSphere
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python run.py
+```
+
+## Future Enhancements
+
+- QR Code Ticket Verification
+- Email Notifications
+- Advanced Analytics
+- Mobile-Friendly Improvements
+- Export Reports
+
+## Application Preview
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Events
+
+![Events](screenshots/events.png)
+
+### Venues
+
+![Venues](screenshots/venues.png)
+
+### Resources
+
+![Resources](screenshots/resources.png)
+
+### Attendees
+
+![Attendees](screenshots/attendees.png)
+
+### Reports
+
+![Reports](screenshots/reports.png)
