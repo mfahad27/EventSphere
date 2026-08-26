@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}EventSphere{% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-container">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ES
+            </div>
+
+            <div>
+                <h2>EventSphere</h2>
+
+                <span>
+                    Event Management
+                </span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="{{ url_for('main.dashboard') }}"
+                class="nav-item"
+            >
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('main.events') }}"
+                class="nav-item"
+            >
+                <span>📅</span>
+                <span>Events</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('main.venues') }}"
+                class="nav-item"
+            >
+                <span>🏢</span>
+                <span>Venues</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('main.resources') }}"
+                class="nav-item"
+            >
+                <span>🧰</span>
+                <span>Resources</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('main.attendees') }}"
+                class="nav-item"
+            >
+                <span>👥</span>
+                <span>Attendees</span>
+            </a>
+
+            <a
+                href="{{ url_for('main.register') }}"
+                class="nav-item"
+            >
+                <span>🎟️</span>
+                <span>Registration</span>
+            </a>
+
+            <a
+                href="{{ url_for('main.check_in') }}"
+                class="nav-item"
+            >
+                <span>✓</span>
+                <span>Check-in</span>
+            </a>
+
+            <a
+                href="{{ url_for('main.vendors') }}"
+                class="nav-item"
+            >
+                <span>🤝</span>
+                <span>Vendors</span>
+            </a>
+
+            <a
+                href="{{ url_for('main.notifications') }}"
+                class="nav-item"
+            >
+                <span>🔔</span>
+                <span>Notifications</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('main.reports') }}"
+                class="nav-item"
+            >
+                <span>📊</span>
+                <span>Reports</span>
+            </a>
+
+            <a
+                href="{{ url_for('milestone3.admin_dashboard') }}"
+                class="nav-item"
+            >
+                <span>✨</span>
+                <span>Milestone 3</span>
+            </a>
+
+            <a
+                href="{{ url_for('milestone3.participant_access') }}"
+                class="nav-item"
+            >
+                <span>🎓</span>
+                <span>Participant Hub</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <strong>EventSphere</strong>
+
+        
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <h3>
+                    Event Planning & Resource Management
+                </h3>
+
+                <p>
+                    Manage your events, venues, resources and attendees
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- FLASH -->
+
+        <div class="flash-container">
+
+            {% with messages = get_flashed_messages(
+                with_categories=true
+            ) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="alert alert-{{ category }}">
+
+                            <span>
+                                {{ message }}
+                            </span>
+
+                            <button
+                                type="button"
+                                onclick="this.parentElement.remove()"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+        </div>
+
+
+        <section class="content-area">
+
+            {% block content %}
+            {% endblock %}
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/main.js') }}"
+></script>
+
+</body>
+
+</html>

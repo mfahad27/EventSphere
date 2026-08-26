@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Venue | EventSphere
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>Create Venue</h1>
+
+        <p>
+            Add a new venue to EventSphere.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('main.venues') }}"
+        class="btn btn-secondary"
+    >
+        ← Back to Venues
+    </a>
+
+</div>
+
+
+<div class="card form-card">
+
+    <form
+        method="POST"
+        action="{{ url_for('main.create_venue') }}"
+    >
+
+
+        <!-- VENUE NAME -->
+
+        <div class="form-group">
+
+            <label for="venue_name">
+                Venue Name
+            </label>
+
+            <input
+                type="text"
+                id="venue_name"
+                name="venue_name"
+                placeholder="Enter venue name"
+                required
+            >
+
+        </div>
+
+
+        <!-- CAPACITY -->
+
+        <div class="form-group">
+
+            <label for="capacity">
+                Capacity
+            </label>
+
+            <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                placeholder="Enter maximum capacity"
+                min="1"
+                required
+            >
+
+        </div>
+
+
+        <!-- LOCATION -->
+
+        <div class="form-group">
+
+            <label for="location">
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Enter venue location"
+                required
+            >
+
+        </div>
+
+
+        <!-- AVAILABILITY -->
+
+        <div class="form-group">
+
+            <label for="availability">
+                Availability
+            </label>
+
+            <select
+                id="availability"
+                name="availability"
+            >
+
+                <option value="Available">
+                    Available
+                </option>
+
+                <option value="Unavailable">
+                    Unavailable
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="form-actions">
+
+            <a
+                href="{{ url_for('main.venues') }}"
+                class="btn btn-secondary"
+            >
+                Cancel
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Create Venue
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

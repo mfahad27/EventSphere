@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Resource Details | EventSphere{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            {{ resource.resource_name }}
+        </h1>
+
+        <p>
+            Resource details
+        </p>
+
+    </div>
+
+    <div>
+
+        <a
+            href="{{ url_for('main.edit_resource', resource_id=resource.resource_id) }}"
+            class="btn btn-primary"
+        >
+            Edit
+        </a>
+
+        <a
+            href="{{ url_for('main.resources') }}"
+            class="btn btn-secondary"
+        >
+            Back
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <div class="detail-grid">
+
+        <div class="detail-item">
+
+            <small>
+                Resource Name
+            </small>
+
+            <strong>
+                {{ resource.resource_name }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>
+                Type
+            </small>
+
+            <strong>
+                {{ resource.resource_type }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>
+                Quantity
+            </small>
+
+            <strong>
+                {{ resource.quantity }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>
+                Location
+            </small>
+
+            <strong>
+                {{ resource.location or "Not specified" }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>
+                Status
+            </small>
+
+            <strong>
+                {{ resource.status }}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>
+                Description
+            </small>
+
+            <strong>
+                {{ resource.description or "No description" }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<form
+    method="POST"
+    action="{{ url_for('main.delete_resource', resource_id=resource.resource_id) }}"
+    data-confirm-delete
+>
+
+    <button
+        type="submit"
+        class="btn btn-danger"
+    >
+        Delete Resource
+    </button>
+
+</form>
+
+{% endblock %}

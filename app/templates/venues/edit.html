@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Venue | EventSphere
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Edit Venue
+        </h1>
+
+        <p>
+            Update venue information.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('main.venue_detail', venue_id=venue.venue_id) }}"
+        class="btn btn-secondary"
+    >
+        ← Back to Venue
+    </a>
+
+</div>
+
+
+<div class="card form-card">
+
+    <form
+        method="POST"
+        action="{{ url_for('main.edit_venue', venue_id=venue.venue_id) }}"
+    >
+
+
+        <!-- VENUE NAME -->
+
+        <div class="form-group">
+
+            <label for="venue_name">
+                Venue Name
+            </label>
+
+            <input
+                type="text"
+                id="venue_name"
+                name="venue_name"
+                value="{{ venue.venue_name }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- CAPACITY -->
+
+        <div class="form-group">
+
+            <label for="capacity">
+                Capacity
+            </label>
+
+            <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                value="{{ venue.capacity }}"
+                min="1"
+                required
+            >
+
+        </div>
+
+
+        <!-- LOCATION -->
+
+        <div class="form-group">
+
+            <label for="location">
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                name="location"
+                value="{{ venue.location }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- AVAILABILITY -->
+
+        <div class="form-group">
+
+            <label for="availability">
+                Availability
+            </label>
+
+            <select
+                id="availability"
+                name="availability"
+            >
+
+                <option
+                    value="Available"
+                    {% if venue.availability == "Available" %}
+                        selected
+                    {% endif %}
+                >
+                    Available
+                </option>
+
+                <option
+                    value="Unavailable"
+                    {% if venue.availability == "Unavailable" %}
+                        selected
+                    {% endif %}
+                >
+                    Unavailable
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="form-actions">
+
+            <a
+                href="{{ url_for('main.venue_detail', venue_id=venue.venue_id) }}"
+                class="btn btn-secondary"
+            >
+                Cancel
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Save Changes
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

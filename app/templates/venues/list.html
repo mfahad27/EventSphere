@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Venues | EventSphere{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>Venues</h1>
+
+        <p>
+            Manage event venues and their availability.
+        </p>
+    </div>
+
+    <a
+        href="{{ url_for('main.create_venue') }}"
+        class="btn btn-primary"
+    >
+        + Create Venue
+    </a>
+
+</div>
+
+
+{% if venues %}
+
+<div class="venue-grid">
+
+    {% for venue in venues %}
+
+    <div class="venue-card">
+
+
+        <!-- VENUE ICON -->
+
+        <div class="venue-card-icon">
+            🏢
+        </div>
+
+
+        <!-- VENUE INFORMATION -->
+
+        <div class="venue-card-content">
+
+            <h2>
+                {{ venue.venue_name }}
+            </h2>
+
+
+            <p class="venue-location">
+                📍 {{ venue.location }}
+            </p>
+
+
+            <!-- VENUE DETAILS -->
+
+            <div class="venue-stats">
+
+                <div class="venue-stat">
+
+                    <span class="venue-stat-label">
+                        Capacity
+                    </span>
+
+                    <strong>
+                        {{ venue.capacity }}
+                    </strong>
+
+                </div>
+
+
+                <div class="venue-stat">
+
+                    <span class="venue-stat-label">
+                        Events
+                    </span>
+
+                    <strong>
+                        {{ venue.events|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="venue-status">
+
+                {% if venue.availability == "Available" %}
+
+                    <span class="status-badge status-available">
+                        ● Available
+                    </span>
+
+                {% else %}
+
+                    <span class="status-badge status-unavailable">
+                        ● Unavailable
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="venue-actions">
+
+                <a
+                    href="{{ url_for(
+                        'main.venue_detail',
+                        venue_id=venue.venue_id
+                    ) }}"
+                    class="btn btn-secondary"
+                >
+                    View Details
+                </a>
+
+
+                <a
+                    href="{{ url_for(
+                        'main.edit_venue',
+                        venue_id=venue.venue_id
+                    ) }}"
+                    class="btn btn-primary"
+                >
+                    Edit
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+{% else %}
+
+<!-- EMPTY STATE -->
+
+<div class="empty-state">
+
+    <div class="empty-icon">
+        🏢
+    </div>
+
+    <h2>
+        No Venues Yet
+    </h2>
+
+    <p>
+        Create your first venue to start assigning locations
+        to your events.
+    </p>
+
+    <a
+        href="{{ url_for('main.create_venue') }}"
+        class="btn btn-primary"
+    >
+        + Create Your First Venue
+    </a>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

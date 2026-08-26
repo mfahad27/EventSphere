@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Resources | EventSphere{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>Resources</h1>
+        <p>Manage equipment and event resources.</p>
+    </div>
+
+    <a
+        href="{{ url_for('main.create_resource') }}"
+        class="btn btn-primary"
+    >
+        + Add Resource
+    </a>
+
+</div>
+
+
+<form
+    class="search-bar"
+    method="GET"
+>
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search resources..."
+        value="{{ search }}"
+    >
+
+    <select name="status">
+
+        <option value="">
+            All Status
+        </option>
+
+        <option
+            value="Available"
+            {% if selected_status == "Available" %}selected{% endif %}
+        >
+            Available
+        </option>
+
+        <option
+            value="Unavailable"
+            {% if selected_status == "Unavailable" %}selected{% endif %}
+        >
+            Unavailable
+        </option>
+
+    </select>
+
+    <button
+        class="btn btn-primary"
+        type="submit"
+    >
+        Search
+    </button>
+
+</form>
+
+
+<div class="card">
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Resource</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for resource in resources %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            {{ resource.resource_name }}
+                        </strong>
+                    </td>
+
+                    <td>
+                        {{ resource.resource_type }}
+                    </td>
+
+                    <td>
+                        {{ resource.quantity }}
+                    </td>
+
+                    <td>
+                        {{ resource.location or "—" }}
+                    </td>
+
+                    <td>
+
+                        {% if resource.status == "Available" %}
+
+                            <span class="badge badge-available">
+                                Available
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge badge-unavailable">
+                                {{ resource.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="{{ url_for('main.resource_detail', resource_id=resource.resource_id) }}"
+                            class="btn btn-secondary"
+                        >
+                            View
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="6">
+                        No resources found.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

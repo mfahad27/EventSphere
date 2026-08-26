@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Edit Event | EventSphere
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Edit Event
+        </h1>
+
+        <p>
+            Update the details of your event.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <form
+        method="POST"
+        action="/events/{{ event.event_id }}/edit"
+    >
+
+
+        <!-- EVENT NAME -->
+
+        <div class="form-group">
+
+            <label for="event_name">
+                Event Name
+            </label>
+
+            <input
+                type="text"
+                id="event_name"
+                name="event_name"
+                value="{{ event.event_name }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- EVENT TYPE -->
+
+        <div class="form-group">
+
+            <label for="event_type">
+                Event Type
+            </label>
+
+            <select
+                id="event_type"
+                name="event_type"
+                required
+            >
+
+                <option
+                    value="Workshop"
+                    {% if event.event_type == "Workshop" %}selected{% endif %}
+                >
+                    Workshop
+                </option>
+
+                <option
+                    value="Seminar"
+                    {% if event.event_type == "Seminar" %}selected{% endif %}
+                >
+                    Seminar
+                </option>
+
+                <option
+                    value="Conference"
+                    {% if event.event_type == "Conference" %}selected{% endif %}
+                >
+                    Conference
+                </option>
+
+                <option
+                    value="Hackathon"
+                    {% if event.event_type == "Hackathon" %}selected{% endif %}
+                >
+                    Hackathon
+                </option>
+
+                <option
+                    value="Symposium"
+                    {% if event.event_type == "Symposium" %}selected{% endif %}
+                >
+                    Symposium
+                </option>
+
+                <option
+                    value="Cultural"
+                    {% if event.event_type == "Cultural" %}selected{% endif %}
+                >
+                    Cultural Event
+                </option>
+
+                <option
+                    value="Sports"
+                    {% if event.event_type == "Sports" %}selected{% endif %}
+                >
+                    Sports Meet
+                </option>
+
+                <option
+                    value="Other"
+                    {% if event.event_type == "Other" %}selected{% endif %}
+                >
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- DATE / TIME -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="date">
+                    Event Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="{{ event.date.strftime('%Y-%m-%d') }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="start_time">
+                    Start Time
+                </label>
+
+                <input
+                    type="time"
+                    id="start_time"
+                    name="start_time"
+                    value="{{ event.start_time.strftime('%H:%M') }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="end_time">
+                    End Time
+                </label>
+
+                <input
+                    type="time"
+                    id="end_time"
+                    name="end_time"
+                    value="{{ event.end_time.strftime('%H:%M') }}"
+                    required
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PARTICIPANTS -->
+
+        <div class="form-group">
+
+            <label for="expected_participants">
+                Expected Participants
+            </label>
+
+            <input
+                type="number"
+                id="expected_participants"
+                name="expected_participants"
+                min="1"
+                value="{{ event.expected_participants }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- BUDGET -->
+
+        <div class="form-group">
+
+            <label for="budget">
+                Budget (₹)
+            </label>
+
+            <input
+                type="number"
+                id="budget"
+                name="budget"
+                min="0"
+                step="0.01"
+                value="{{ event.budget }}"
+            >
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label for="status">
+                Event Status
+            </label>
+
+            <select
+                id="status"
+                name="status"
+                required
+            >
+
+                <option
+                    value="Planning"
+                    {% if event.status == "Planning" %}selected{% endif %}
+                >
+                    Planning
+                </option>
+
+                <option
+                    value="Scheduled"
+                    {% if event.status == "Scheduled" %}selected{% endif %}
+                >
+                    Scheduled
+                </option>
+
+                <option
+                    value="Completed"
+                    {% if event.status == "Completed" %}selected{% endif %}
+                >
+                    Completed
+                </option>
+
+                <option
+                    value="Cancelled"
+                    {% if event.status == "Cancelled" %}selected{% endif %}
+                >
+                    Cancelled
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="form-actions">
+
+            <a
+                href="/events"
+                class="btn btn-secondary"
+            >
+                Cancel
+            </a>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Save Changes
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

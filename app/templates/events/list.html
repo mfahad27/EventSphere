@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+
+{% block title %}
+Events | EventSphere
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <h1>Events</h1>
+
+        <p>
+            Manage, search and filter all your events.
+        </p>
+    </div>
+
+    <a
+        href="{{ url_for('main.create_event') }}"
+        class="btn btn-primary"
+    >
+        + Create Event
+    </a>
+
+</div>
+
+
+<!-- ======================================================
+     SEARCH & FILTERS
+====================================================== -->
+
+<div class="card filter-card">
+
+    <form
+        method="GET"
+        action="{{ url_for('main.events') }}"
+    >
+
+        <div class="filter-grid">
+
+            <!-- SEARCH -->
+
+            <div class="form-group">
+
+                <label for="search">
+                    Search Event
+                </label>
+
+                <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search by event name..."
+                >
+
+            </div>
+
+
+            <!-- EVENT TYPE -->
+
+            <div class="form-group">
+
+                <label for="event_type">
+                    Event Type
+                </label>
+
+                <select
+                    id="event_type"
+                    name="event_type"
+                >
+
+                    <option value="">
+                        All Event Types
+                    </option>
+
+                    {% for event_type in event_types %}
+
+                        <option
+                            value="{{ event_type }}"
+                            {% if selected_event_type == event_type %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ event_type }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+                <label for="status">
+                    Status
+                </label>
+
+                <select
+                    id="status"
+                    name="status"
+                >
+
+                    <option value="">
+                        All Statuses
+                    </option>
+
+                    {% for item in statuses %}
+
+                        <option
+                            value="{{ item }}"
+                            {% if selected_status == item %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ item }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- VENUE -->
+
+            <div class="form-group">
+
+                <label for="venue_id">
+                    Venue
+                </label>
+
+                <select
+                    id="venue_id"
+                    name="venue_id"
+                >
+
+                    <option value="">
+                        All Venues
+                    </option>
+
+                    {% for venue in venues %}
+
+                        <option
+                            value="{{ venue.venue_id }}"
+                            {% if selected_venue_id == venue.venue_id|string %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ venue.venue_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-actions">
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                🔍 Search & Filter
+            </button>
+
+            <a
+                href="{{ url_for('main.events') }}"
+                class="btn btn-secondary"
+            >
+                Clear Filters
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- ======================================================
+     RESULT SUMMARY
+====================================================== -->
+
+<div class="results-header">
+
+    <div>
+
+        <strong>
+            {{ events|length }}
+        </strong>
+
+        event{% if events|length != 1 %}s{% endif %} found
+
+    </div>
+
+    {% if search or selected_event_type or selected_status or selected_venue_id %}
+
+        <span class="filter-active">
+            Filters applied
+        </span>
+
+    {% endif %}
+
+</div>
+
+
+<!-- ======================================================
+     EVENT LIST
+====================================================== -->
+
+{% if events %}
+
+<div class="event-grid">
+
+    {% for event in events %}
+
+    <div class="event-card">
+
+        <div class="event-card-top">
+
+            <div class="event-date">
+
+                <span class="event-day">
+                    {{ event.date.strftime('%d') }}
+                </span>
+
+                <span class="event-month">
+                    {{ event.date.strftime('%b') }}
+                </span>
+
+            </div>
+
+
+            <span class="status-badge status-{{ event.status|lower }}">
+                {{ event.status }}
+            </span>
+
+        </div>
+
+
+        <div class="event-card-body">
+
+            <h3>
+                {{ event.event_name }}
+            </h3>
+
+            <p class="event-type">
+                {{ event.event_type }}
+            </p>
+
+
+            <div class="event-info">
+
+                <div>
+                    📅
+                    {{ event.date.strftime('%d %B %Y') }}
+                </div>
+
+                <div>
+                    🕐
+                    {{ event.start_time.strftime('%I:%M %p') }}
+                    -
+                    {{ event.end_time.strftime('%I:%M %p') }}
+                </div>
+
+                <div>
+
+                    🏢
+
+                    {% if event.venue %}
+
+                        {{ event.venue.venue_name }}
+
+                    {% else %}
+
+                        No venue assigned
+
+                    {% endif %}
+
+                </div>
+
+                <div>
+                    👥
+                    {{ event.expected_participants }}
+                    participants
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="event-card-footer">
+
+            <a
+                href="{{ url_for(
+                    'main.event_detail',
+                    event_id=event.event_id
+                ) }}"
+                class="btn btn-small btn-secondary"
+            >
+                View
+            </a>
+
+            <a
+                href="{{ url_for(
+                    'main.edit_event',
+                    event_id=event.event_id
+                ) }}"
+                class="btn btn-small btn-primary"
+            >
+                Edit
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-state">
+
+    <div class="empty-icon">
+        📅
+    </div>
+
+    <h2>
+        No Events Found
+    </h2>
+
+    <p>
+        No events match your current search or filters.
+    </p>
+
+    <a
+        href="{{ url_for('main.events') }}"
+        class="btn btn-secondary"
+    >
+        Clear Filters
+    </a>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

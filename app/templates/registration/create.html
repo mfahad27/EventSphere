@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Register | EventSphere{% endblock %}
+{% block content %}
+<div class="page-header"><div><p class="eyebrow">EVENT REGISTRATION</p><h1>Reserve your place</h1><p>Complete the form to receive your digital QR ticket.</p></div><a class="btn btn-secondary" href="{{ url_for('main.events') }}">Browse events</a></div>
+<form method="post" class="form-card registration-card" id="registration-form">
+  <div class="registration-flow"><span>1. Choose event</span><span>2. Share details</span><span>3. Get ticket</span></div>
+  <div class="form-grid">
+    <div class="form-group"><label>Registration ID</label><input value="{{ next_registration_id }}" readonly><small>Assigned automatically when your registration is saved.</small></div>
+    <div class="form-group"><label for="event_id">Event Name</label><select id="event_id" name="event_id" required><option value="">Select an event</option>{% for event in events %}<option value="{{ event.event_id }}" {% if selected_event_id == event.event_id %}selected{% endif %}>{{ event.event_name }} · {{ event.date.strftime('%d %b %Y') }}</option>{% endfor %}</select></div>
+    <div class="form-group"><label for="name">Student Name</label><input id="name" name="name" required autocomplete="name"></div>
+    <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="student@example.com"></div>
+    <div class="form-group"><label for="phone">Phone Number</label><input id="phone" name="phone" inputmode="numeric" pattern="[6-9][0-9]{9}" minlength="10" maxlength="10" required placeholder="9876543210"></div>
+    <div class="form-group"><label for="college">College Name</label><input id="college" name="college" required></div>
+    <div class="form-group"><label for="department">Department</label><input id="department" name="department" required></div>
+  </div>
+  <div class="form-actions"><a class="btn btn-secondary" href="{{ url_for('main.events') }}">Cancel</a><button class="btn btn-primary" type="submit"><span class="submit-label">Confirm & generate ticket</span></button></div>
+</form>
+{% endblock %}

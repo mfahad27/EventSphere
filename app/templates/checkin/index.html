@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Check-in | EventSphere{% endblock %}
+{% block content %}
+<div class="page-header"><div><p class="eyebrow">EVENT DAY</p><h1>QR ticket check-in</h1><p>Scan a QR payload or enter the ticket ID to verify entry.</p></div></div>
+<div class="checkin-layout"><section class="form-card"><h2>Verify participant</h2><form method="post" id="checkin-form"><div class="form-group"><label for="ticket_value">Ticket ID or QR value</label><input id="ticket_value" name="ticket_value" required placeholder="TKT1001 or scanned QR value" autofocus></div><button class="btn btn-primary" type="submit">Verify & check in</button></form></section><aside class="checkin-hint"><strong>Secure entry</strong><p>Each ticket may be checked in only once. Cancelled and absent registrations cannot be used.</p></aside></div>
+{% if result %}<section class="card checkin-result"><p class="eyebrow">TICKET VERIFIED</p><h2>{{ result.attendee.name }}</h2><p>{{ result.event.event_name }} · {{ result.ticket_id }}</p><span class="status-badge status-{{ result.attendee.status|lower|replace(' ', '-') }}">{{ result.attendee.status }}</span></section>{% endif %}
+{% endblock %}
