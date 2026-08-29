@@ -71,6 +71,7 @@ def create_app():
     db.init_app(app)
     from app import models  # Ensure metadata is populated before initialization.
     from app import milestone3_models  # Additive Milestone 3 tables.
+    from app import operations_models  # Additive finance and automation tables.
     with app.app_context():
         database_path = os.path.join(app.instance_path, "eventsphere.db")
         if os.path.exists(database_path) and not _schema_is_current():
@@ -84,6 +85,9 @@ def create_app():
         _seed_development_data()
     from app.routes import main
     from app.milestone3_routes import milestone3
+    from app.operations_routes import operations, api
     app.register_blueprint(main)
     app.register_blueprint(milestone3)
+    app.register_blueprint(operations)
+    app.register_blueprint(api)
     return app

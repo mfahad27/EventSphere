@@ -6,7 +6,7 @@ A full-stack web application built using **Python, Flask, SQLite, SQLAlchemy, HT
 
 ## Milestone Status
 
-**Current Progress:** Milestone 3 Completed
+**Current Progress:** Milestones 3 and 4 Completed
 
 ## Problem Statement
 
@@ -58,6 +58,24 @@ EventSphere provides one centralized platform to manage the complete event workf
 - Store Budget
 - Expense Tracking
 - Remaining Budget Calculation
+- Sponsorship Revenue
+- Expense Approval Workflow
+
+### Milestone 3: APIs & Automation
+
+- Versioned REST read APIs for events, attendees, resources, vendors and financial summaries
+- Expense and sponsorship API submission endpoints
+- Event financial operations center
+- Scheduled participant/vendor reminders
+- Approval queue and automation audit log
+
+### Milestone 4: Analytics & Optimization
+
+- KPI dashboard for attendance, budget, vendors and resources
+- Event comparison and attendance forecasting
+- Resource utilization suggestions (no automatic allocation changes)
+- PDF and CSV event reports
+- Integration tests, Docker packaging and GitHub Actions CI
 
 ### Reports
 
@@ -65,6 +83,14 @@ EventSphere provides one centralized platform to manage the complete event workf
 - Event Reports
 - Venue Usage
 - Resource Usage
+- PDF and CSV exports
+
+## Milestone 3/4 Documentation
+
+- `docs/ARCHITECTURE.md` — system architecture and additive-module boundary
+- `docs/API.md` — endpoint reference and request examples
+- `docs/USER_GUIDE.md` — organizer and participant workflows
+- `docs/DEPLOYMENT.md` — Docker and CI deployment instructions
 
 ## Project Structure
 
@@ -84,6 +110,12 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 python run.py
+```
+
+Run the integration checks with:
+
+```bash
+python -m unittest discover -s tests -v
 ```
 
 ## Future Enhancements
