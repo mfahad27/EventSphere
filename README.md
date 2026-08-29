@@ -1,132 +1,140 @@
 # EventSphere – Event Planning & Resource Management System
 
-![EventSphere Banner](screenshots/dashboard.png)
-
-A full-stack web application built using **Python, Flask, SQLite, SQLAlchemy, HTML, CSS, and JavaScript** to simplify event planning, venue booking, resource allocation, participant management, vendor management, and attendance tracking.
+A modern full-stack web application built using **Python, Flask, SQLite, SQLAlchemy, HTML, CSS, and JavaScript** to simplify event planning, venue booking, resource allocation, participant management, attendance tracking, and operational analytics.
 
 ## Milestone Status
 
-**Current Progress:** Milestones 3 and 4 Completed
+**Current Progress:** ✅ Milestone 4 Completed
+
+---
 
 ## Problem Statement
 
-Managing college events manually through spreadsheets, paper records, and messaging apps often leads to scheduling conflicts, resource shortages, and poor organization.
+Managing college events through spreadsheets, paper records, and messaging apps often leads to scheduling conflicts, resource shortages, and poor organization.
 
-EventSphere provides one centralized platform to manage the complete event workflow.
+EventSphere provides a centralized platform that manages the complete event lifecycle from planning to reporting.
 
-## Tech Stack
+---
 
-- Python
-- Flask
-- SQLite
-- Flask-SQLAlchemy
-- HTML5
-- CSS3
-- JavaScript
+## Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Python | Backend |
+| Flask | Web Framework |
+| SQLite | Database |
+| SQLAlchemy | ORM |
+| HTML5 | Frontend Structure |
+| CSS3 | Styling |
+| JavaScript | Client-side Interactions |
+
+---
 
 ## Features Completed
 
-### Event Management
+### Milestone 1 – Core Management
 
-- Create Event
-- View Events
-- Edit Events
-- Delete Events
+- Event CRUD (Create, Read, Update, Delete)
+- Venue Management
+- Venue Capacity Validation
+- Venue Scheduling Conflict Detection
+- Resource Management
+- Resource Allocation & Return
+- Participant Registration
+- Dashboard Overview
+- Budget Foundation
 
-### Venue Management
+### Milestone 2 – Event Operations
 
-- Add Venues
-- Assign Venues
-- Capacity Validation
-- Scheduling Conflict Detection
-
-### Resource Management
-
-- Add Resources
-- Allocate Resources
-- Availability Validation
-- Resource Return
-
-### Participant Management
-
-- Register Participants
-- Prevent Duplicate Registration
+- QR Code Ticket Generation
+- Digital Tickets
+- Participant Check-in
 - Attendance Tracking
+- Vendor Management
+- Registration Workflow
 
-### Budget Management
+### Milestone 3 – Smart Operations
 
-- Store Budget
+- Budget Monitoring
 - Expense Tracking
-- Remaining Budget Calculation
-- Sponsorship Revenue
-- Expense Approval Workflow
+- Sponsorship Tracking
+- REST API Foundation
+- Notifications & Reminders
+- Approval Workflow
 
-### Milestone 3: APIs & Automation
+### Milestone 4 – Analytics & Optimization
 
-- Versioned REST read APIs for events, attendees, resources, vendors and financial summaries
-- Expense and sponsorship API submission endpoints
-- Event financial operations center
-- Scheduled participant/vendor reminders
-- Approval queue and automation audit log
+- Analytics Dashboard
+- KPI Cards
+- Charts & Visual Reports
+- Resource Utilization Analysis
+- Venue Utilization Analysis
+- Budget Analytics
+- PDF & CSV Report Export
+- Integration Testing
+- CI Workflow
+- Docker Support
+- API Documentation
+- Architecture Documentation
+- Deployment Guide
+- User Guide
 
-### Milestone 4: Analytics & Optimization
+---
 
-- KPI dashboard for attendance, budget, vendors and resources
-- Event comparison and attendance forecasting
-- Resource utilization suggestions (no automatic allocation changes)
-- PDF and CSV event reports
-- Integration tests, Docker packaging and GitHub Actions CI
+## Project Workflow
 
-### Reports
+Create Event
+↓
+Book Venue
+↓
+Allocate Resources
+↓
+Register Participants
+↓
+Generate QR Ticket
+↓
+Participant Check-in
+↓
+Attendance Tracking
+↓
+Budget Monitoring
+↓
+Analytics & Reports
 
-- Dashboard Summary
-- Event Reports
-- Venue Usage
-- Resource Usage
-- PDF and CSV exports
-
-## Milestone 3/4 Documentation
-
-- `docs/ARCHITECTURE.md` — system architecture and additive-module boundary
-- `docs/API.md` — endpoint reference and request examples
-- `docs/USER_GUIDE.md` — organizer and participant workflows
-- `docs/DEPLOYMENT.md` — Docker and CI deployment instructions
+---
 
 ## Project Structure
 
+```text
 EventSphere/
+│
 ├── app/
-├── instance/
-├── run.py
+│   ├── static/
+│   ├── templates/
+│   ├── operations_models.py
+│   ├── operations_routes.py
+│   └── operations_services.py
+│
+├── docs/
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   ├── DEPLOYMENT.md
+│   └── USER_GUIDE.md
+│
+├── tests/
+│
+├── .github/
+│
+├── Dockerfile
 ├── requirements.txt
 └── README.md
-
-## Installation
-
-```bash
-git clone https://github.com/mfahad27/EventSphere.git
-cd EventSphere
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python run.py
 ```
 
-Run the integration checks with:
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-## Future Enhancements
-
-- QR Code Ticket Verification
-- Email Notifications
-- Advanced Analytics
-- Mobile-Friendly Improvements
-- Export Reports
+---
 
 ## Application Preview
+
+> Replace these images with your actual screenshots.
 
 ### Dashboard
 
@@ -144,10 +152,97 @@ python -m unittest discover -s tests -v
 
 ![Resources](screenshots/resources.png)
 
-### Attendees
+### Analytics
 
-![Attendees](screenshots/attendees.png)
+![Analytics](screenshots/analytics.png)
 
-### Reports
+### Budget
 
-![Reports](screenshots/reports.png)
+![Budget](screenshots/budget.png)
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mfahad27/EventSphere.git
+cd EventSphere
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it:
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application:
+
+```bash
+python run.py
+```
+
+Open your browser:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## Documentation
+
+The project includes additional documentation inside the `docs/` folder.
+
+- API Documentation
+- Architecture Guide
+- Deployment Guide
+- User Guide
+
+---
+
+## Testing
+
+The project includes integration testing.
+
+Run:
+
+```bash
+pytest
+```
+
+---
+
+## Future Enhancements
+
+- Email Notifications
+- Mobile App
+- Cloud Deployment
+- Advanced Analytics
+- Multi-user Authentication
+- Real-time Event Updates
+
+---
+
+## Author
+
+**Mohammed Fahad**
+
+AIML Engineering Student
+
+GitHub: https://github.com/mfahad27
